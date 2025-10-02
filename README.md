@@ -8,7 +8,7 @@ A full-stack Kanban board application built with React (frontend) and Django (ba
 - **Drag & Drop**: Move tasks between columns and reorder within columns
 - **Task Management**: Create, edit, and delete tasks
 - **Task Details**: View and edit task details in a modal
-- **Detailed Information**: Additional detailed notes field only visible in task details modal
+- **Detailed Information**: Comprehensive notes field available when creating or editing tasks (not shown on board)
 - **Priority Levels**: Low, Medium, High priority with color coding
 - **Assignee Management**: Assign tasks to team members
 - **Real-time Updates**: Optimistic UI updates with API synchronization
@@ -73,14 +73,16 @@ The application will be available at:
 ## Usage
 
 ### Creating Tasks
-- Use the form at the top to create new tasks
-- Fill in title, description, assignee, priority, and initial column
-- Click "Add Task" to create
+- Click the "+ Add Task" button in the header
+- Fill in task details including title, description, assignee, priority, and initial column
+- Add detailed information for comprehensive notes, requirements, or specifications
+- Click "Create Task" to add to the board
 
 ### Managing Tasks
 - **Drag & Drop**: Click and drag tasks between columns
-- **Edit**: Click on any task card to open the edit modal
+- **Edit**: Click on any task card to view/edit details including detailed information
 - **Delete**: Click the × button on any task card
+- **Detailed Information**: Comprehensive notes field available in both create and edit modals
 
 ### API Endpoints
 
