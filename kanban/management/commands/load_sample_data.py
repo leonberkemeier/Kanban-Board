@@ -33,6 +33,7 @@ class Command(BaseCommand):
                 'priority': 'high',
                 'assignee': 'Alice',
                 'order': 0,
+                'detailed_information': 'Technical Requirements:\n\n1. Use JWT tokens for session management\n2. Implement password hashing with bcrypt\n3. Add OAuth integration for Google/GitHub\n4. Include password reset functionality\n5. Add rate limiting for login attempts\n\nAcceptance Criteria:\n- Users can register with email/password\n- Users can login and logout\n- Sessions expire after 24 hours\n- Failed login attempts are logged\n- Password must meet security requirements (8+ chars, special chars)\n\nNotes:\n- Consider implementing 2FA in future iteration\n- Coordinate with frontend team for UI components',
             },
             {
                 'title': 'Create API endpoints',
@@ -41,6 +42,7 @@ class Command(BaseCommand):
                 'priority': 'high',
                 'assignee': 'Charlie',
                 'order': 0,
+                'detailed_information': 'API Endpoints to implement:\n\n1. User Management\n   - POST /api/users/register\n   - POST /api/users/login\n   - GET /api/users/profile\n   - PUT /api/users/profile\n\n2. Tasks Management\n   - GET /api/tasks/\n   - POST /api/tasks/\n   - PUT /api/tasks/{id}/\n   - DELETE /api/tasks/{id}/\n   - POST /api/tasks/bulk-update/\n\n3. Categories\n   - GET /api/categories/\n   - POST /api/categories/\n\nTesting Status:\n✅ User endpoints tested\n✅ Task CRUD operations tested\n⏳ Bulk update endpoint needs testing\n⏳ Error handling review needed\n\nDeployment Notes:\n- API documentation generated with Swagger\n- Rate limiting configured\n- CORS properly set up for frontend',
             },
             {
                 'title': 'Write unit tests',

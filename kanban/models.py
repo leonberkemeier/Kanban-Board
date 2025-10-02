@@ -22,6 +22,7 @@ class Task(models.Model):
         default='medium'
     )
     assignee = models.CharField(max_length=100, blank=True)
+    detailed_information = models.TextField(blank=True, help_text="Detailed information only visible in task details")
     
     class Meta:
         ordering = ['order', 'created_at']
