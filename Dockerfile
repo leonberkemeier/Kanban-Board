@@ -12,9 +12,7 @@ WORKDIR /app
 # Install system dependencies
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        postgresql-client \
         build-essential \
-        libpq-dev \
         curl \
     && rm -rf /var/lib/apt/lists/*
 
@@ -26,7 +24,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # Create a non-root user
-RUN adduser --disabled-password --gecos '' appuser && chown -R appuser /app
+RUN adduser --disabled-password --gecos '' appuser \
+    && chown -R appuser:appuser /app
+
+# Switch to appuser AFTER setting ownership
 USER appuser
 
 # Collect static files
