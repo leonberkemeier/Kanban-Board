@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # PostgreSQL database
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: kanban_db
+      POSTGRES_USER: kanban_user
+      POSTGRES_PASSWORD: kanban_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kanban_user -d kanban_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Django backend
+  backend:
+    build: .
+    restart: unless-stopped
+    command: sh -c "python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/static
+    ports:
+      - "8001:8000"
+    environment:
+      - DEBUG=1
+      - DATABASE_URL=postgresql://kanban_user:kanban_pass@db:5432/kanban_db
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/api/tasks/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Nginx (optional - for production)
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - static_volume:/app/static
+    depends_on:
+      - backend
+    profiles:
+      - production
+
+volumes:
+  postgres_data:
+  static_volume:

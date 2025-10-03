@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  # Django backend only (development mode)
+  backend:
+    build: .
+    restart: unless-stopped
+    command: sh -c "python manage.py migrate && python manage.py load_sample_data && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8001:8000"
+    environment:
+      - DEBUG=1
+      - DJANGO_SETTINGS_MODULE=backend.settings
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/api/tasks/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
