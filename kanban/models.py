@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Task(models.Model):
     COLUMN_CHOICES = [
@@ -13,6 +14,7 @@ class Task(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     column = models.CharField(max_length=20, choices=COLUMN_CHOICES, default='backlog')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
     order = models.IntegerField(default=0)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)

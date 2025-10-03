@@ -6,15 +6,20 @@ from .models import Task
 from .serializers import TaskSerializer, TaskUpdateSerializer
 
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all()
+    queryset = Task.objects.all()  # This is required for router registration
     serializer_class = TaskSerializer
     
     def get_queryset(self):
-        queryset = Task.objects.all()
+        # Only show tasks owned by the current user
+        queryset = Task.objects.filter(owner=self.request.user)
         column = self.request.query_params.get('column', None)
         if column is not None:
             queryset = queryset.filter(column=column)
         return queryset.order_by('order', 'created_at')
+    
+    def perform_create(self, serializer):
+        # Automatically set the owner to the current user
+        serializer.save(owner=self.request.user)
     
     @action(detail=False, methods=['post'])
     def update_positions(self, request):
@@ -29,7 +34,11 @@ class TaskViewSet(viewsets.ModelViewSet):
                     order = task_data.get('order')
                     
                     if task_id and column is not None and order is not None:
-                        Task.objects.filter(id=task_id).update(
+                        # Only update tasks owned by the current user
+                        Task.objects.filter(
+                            id=task_id, 
+                            owner=self.request.user
+                        ).update(
                             column=column,
                             order=order
                         )
