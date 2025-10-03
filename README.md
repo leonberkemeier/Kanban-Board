@@ -12,6 +12,8 @@ A full-stack Kanban board application built with React (frontend) and Django (ba
 - **Priority Levels**: Low, Medium, High priority with color coding
 - **Assignee Management**: Assign tasks to team members
 - **Real-time Updates**: Optimistic UI updates with API synchronization
+- **Responsive Design**: Balanced layout with smart margins across all devices
+- **Touch-Friendly**: Optimized for mobile and tablet devices
 
 ## Architecture
 
@@ -131,12 +133,38 @@ KanbanBoard/
 - @hello-pangea/dnd (drag & drop)
 - axios (HTTP client)
 
+## Responsive Design
+
+### Desktop (1200px+)
+- **Balanced Layout**: Board uses most of screen width with comfortable 48px side margins
+- **Flexible Columns**: Columns expand to fill available space with 300px minimum width
+- **Enhanced Spacing**: 20px gaps between columns for better separation
+- **Enhanced Modals**: Larger modal windows for detailed editing
+
+### Ultrawide (1600px+)
+- **Generous Margins**: 80px side margins for optimal viewing on very large screens
+- **Enhanced Spacing**: 24px gaps between columns for premium feel
+
+### Tablet (768px - 1199px)
+- **Flexible Layout**: Columns expand to fill available width with 280px minimum
+- **Comfortable Margins**: 24px side margins for balanced tablet viewing
+- **Touch Optimization**: Larger touch targets and improved spacing
+- **Responsive Modals**: Modals scale appropriately for tablet screens
+
+### Mobile (< 768px)
+- **Horizontal Scroll**: Smooth scrolling across columns
+- **Full-width Header**: Add Task button spans full width
+- **Touch-Friendly Cards**: Larger touch targets and better finger navigation
+- **Mobile-Optimized Modals**: Full-screen experience with stacked form elements
+- **Gesture Support**: Optimized for touch interactions
+
 ## Development Notes
 
 - The application uses optimistic UI updates for better user experience
 - CORS is configured to allow requests from localhost:3000
 - Database uses SQLite for development (easily changeable for production)
 - Sample data command provides realistic tasks for testing
+- Responsive breakpoints: Mobile (<768px), Tablet (768-1199px), Desktop (1200px+)
 
 ## Future Enhancements
 
@@ -146,4 +174,7 @@ KanbanBoard/
 - Comments and activity history
 - Board templates
 - Real-time collaboration
-- Mobile responsiveness improvements
+- Progressive Web App (PWA) capabilities
+- Offline functionality
+- Push notifications
+- Advanced mobile gestures
