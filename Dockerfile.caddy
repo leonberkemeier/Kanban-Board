@@ -1,0 +1,16 @@
+# Use the official Caddy image
+FROM caddy:2.7-alpine
+
+# Copy the built React app
+COPY frontend/build /usr/share/caddy
+
+# Copy the Caddyfile
+COPY Caddyfile.production /etc/caddy/Caddyfile
+
+# Create log directory
+RUN mkdir -p /var/log/caddy
+
+# Expose port 80 and 443
+EXPOSE 80 443
+
+# The default CMD from the base image will start Caddy

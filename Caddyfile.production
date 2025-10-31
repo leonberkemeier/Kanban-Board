@@ -1,0 +1,30 @@
+kanban.leonberkemeier.de {
+    # Handle API requests - proxy to Django backend
+    handle_path /api/* {
+        reverse_proxy localhost:9000
+    }
+    
+    # Serve static React build files from Caddy's web directory
+    root * /var/www/kanban
+    file_server
+    
+    # SPA fallback - serve index.html for all non-API routes
+    try_files {path} /index.html
+    
+    # Enable compression
+    encode gzip
+    
+    # Security headers
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        X-XSS-Protection "1; mode=block"
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    }
+    
+    # Logs
+    log {
+        output file /var/log/caddy/kanban.log
+        format console
+    }
+}

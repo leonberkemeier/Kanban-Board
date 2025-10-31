@@ -5,17 +5,18 @@ services:
   backend:
     build: .
     restart: unless-stopped
-    command: sh -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn backend.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120"
+    command: sh -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn backend.wsgi:application --bind 0.0.0.0:9000 --workers 3 --timeout 120"
     volumes:
       - .:/app
       - static_volume:/app/static
     ports:
-      - "8001:8000"
+      - "9000:9000"
     environment:
       - DEBUG=0
-      - ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
+      - ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0,kanban.leonberkemeier.de
+      - SECRET_KEY=yYrK4CXElhucOHK8WLQk2V8qtW7gB7k2ZpPP0cdyqkY_Af7nX_
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8000/api/tasks/ || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:9000/api/tasks/ || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
