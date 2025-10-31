@@ -139,6 +139,10 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
+# IMPORTANT: Allow API requests even without Origin header (curl, Postman, etc.)
+# This is needed for the API to work with direct HTTP clients
+CORS_ORIGIN_ALLOW_ALL = True
+
 # REST Framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
