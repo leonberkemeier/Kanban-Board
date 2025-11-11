@@ -1,0 +1,380 @@
+/* Backdrop overlay */
+.task-overlay-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 1000;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.task-overlay-backdrop.open {
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: visible;
+  pointer-events: all;
+}
+
+/* Main overlay panel */
+.task-details-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 20%;
+  min-width: 320px;
+  height: 100vh;
+  background: var(--bg-secondary);
+  box-shadow: -4px 0 20px var(--shadow);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  border-left: 1px solid var(--border-color);
+}
+
+.task-details-overlay.open {
+  transform: translateX(0);
+}
+
+/* Header */
+.overlay-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-tertiary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.overlay-header h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.close-overlay-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-overlay-btn:hover {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Content */
+.overlay-content {
+  padding: 0;
+}
+
+.task-title-section {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.task-title {
+  margin: 0 0 1rem 0;
+  color: var(--text-primary);
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.task-meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.task-status, .task-priority {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-label, .priority-label {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-width: 60px;
+}
+
+.status-value {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  background: var(--bg-tertiary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.priority-value {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.priority-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Task sections */
+.task-section {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.task-section h4 {
+  margin: 0 0 0.75rem 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.assignee-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.assignee-icon {
+  font-size: 1rem;
+}
+
+.assignee-name {
+  font-weight: 500;
+}
+
+.task-description, .task-detailed-info {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.task-detailed-info {
+  background: var(--bg-tertiary);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-primary);
+}
+
+/* Timeline */
+.timeline-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timeline-label {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.timeline-value {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+/* Actions section */
+.task-actions-section {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.edit-task-btn, .delete-task-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-task-btn {
+  background: var(--accent-primary);
+  color: white;
+}
+
+.edit-task-btn:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-1px);
+}
+
+.delete-task-btn {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid var(--error-border);
+}
+
+.delete-task-btn:hover {
+  background: var(--error-text);
+  color: white;
+}
+
+.btn-icon {
+  font-size: 1rem;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .task-details-overlay {
+    width: 25%;
+  }
+}
+
+@media (max-width: 900px) {
+  .task-details-overlay {
+    width: 35%;
+  }
+}
+
+@media (max-width: 768px) {
+  .task-details-overlay {
+    width: 50%;
+    min-width: 280px;
+  }
+  
+  .overlay-header {
+    padding: 1rem;
+  }
+  
+  .task-title-section, .task-section, .task-actions-section {
+    padding: 1rem;
+  }
+  
+  .task-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-details-overlay {
+    width: 85%;
+    min-width: unset;
+  }
+  
+  .task-meta-row {
+    gap: 0.5rem;
+  }
+  
+  .status-value {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8125rem;
+  }
+  
+  .priority-value {
+    font-size: 0.8125rem;
+  }
+}
+
+/* Scrollbar styles for overlay */
+.task-details-overlay::-webkit-scrollbar {
+  width: 6px;
+}
+
+.task-details-overlay::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+.task-details-overlay::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+.task-details-overlay::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Dark mode explicit overrides for the task details overlay */
+[data-theme="dark"] .task-overlay-backdrop.open {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .task-details-overlay {
+  background: var(--bg-secondary);
+  box-shadow: -8px 0 30px var(--shadow);
+  border-left-color: var(--border-color);
+}
+
+[data-theme="dark"] .overlay-header,
+[data-theme="dark"] .task-section,
+[data-theme="dark"] .task-title-section,
+[data-theme="dark"] .task-actions-section {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .overlay-header h2,
+[data-theme="dark"] .task-title,
+[data-theme="dark"] .task-section h4 {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .close-overlay-btn {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .close-overlay-btn:hover {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .task-description,
+[data-theme="dark"] .task-detailed-info,
+[data-theme="dark"] .timeline-value,
+[data-theme="dark"] .assignee-info {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .task-detailed-info {
+  background: var(--bg-tertiary);
+  border-left-color: var(--accent-primary);
+}
+
+[data-theme="dark"] .edit-task-btn {
+  background: var(--accent-primary);
+  color: #fff;
+}
+
+[data-theme="dark"] .delete-task-btn {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border-color: var(--error-border);
+}

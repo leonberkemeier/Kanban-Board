@@ -15,7 +15,7 @@ services:
     environment:
       - DEBUG=0
       - ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0,kanban.leonberkemeier.de
-      - SECRET_KEY=yYrK4CXElhucOHK8WLQk2V8qtW7gB7k2ZpPP0cdyqkY_Af7nX_
+      - SECRET_KEY=xV9r8Qf2zP7yLw3N_aHk5sR0mUeBvY6cTqJ4nFzG
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:9000/api/tasks/ || exit 1"]
       interval: 30s

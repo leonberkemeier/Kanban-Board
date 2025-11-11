@@ -1,0 +1,296 @@
+.task-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.task-modal {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px var(--shadow);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.task-form {
+  padding: 2rem;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+  font-family: inherit;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--shadow-hover);
+}
+
+.form-group input.error,
+.form-group textarea.error,
+.form-group select.error {
+  border-color: #ef4444;
+}
+
+.form-group input:disabled,
+.form-group textarea:disabled,
+.form-group select:disabled {
+  background-color: var(--bg-tertiary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.modal-actions {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  background: var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.cancel-btn {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 2px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-btn:hover:not(:disabled) {
+  background-color: var(--bg-primary);
+  border-color: var(--border-light);
+  color: var(--text-primary);
+}
+
+.save-btn {
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.save-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px var(--shadow-hover);
+}
+
+.save-btn:disabled,
+.cancel-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .task-modal-backdrop {
+    padding: 0.5rem;
+  }
+  
+  .task-modal {
+    max-width: 100%;
+    max-height: 95vh;
+  }
+  
+  .modal-header,
+  .task-form,
+  .modal-actions {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .task-form {
+    gap: 1.25rem;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .modal-actions {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+  
+  .cancel-btn,
+  .save-btn {
+    width: 100%;
+    padding: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-header {
+    padding: 1rem 1.25rem;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.25rem;
+  }
+  
+  .task-form {
+    padding: 1.5rem 1.25rem;
+  }
+  
+  .modal-actions {
+    padding: 1.25rem;
+  }
+}
+
+/* Dark mode explicit overrides for the modal (uses CSS variables set on [data-theme]) */
+[data-theme="dark"] .task-modal-backdrop {
+  /* slightly stronger backdrop in dark mode for better contrast */
+  background: rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="dark"] .task-modal {
+  background: var(--bg-secondary);
+  box-shadow: 0 24px 40px -10px var(--shadow);
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-actions {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .modal-header h2,
+[data-theme="dark"] .form-group label {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .close-btn {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .close-btn:hover {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea,
+[data-theme="dark"] .form-group select {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .task-form {
+  /* ensure scrollbars and inner areas match dark theme */
+  background: transparent;
+}

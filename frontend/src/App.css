@@ -1,0 +1,107 @@
+:root {
+  /* Light theme variables */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-hover: rgba(102, 126, 234, 0.3);
+  --accent-primary: #667eea;
+  --accent-secondary: #764ba2;
+  --error-bg: #fee2e2;
+  --error-text: #dc2626;
+  --error-border: #fecaca;
+  --success-bg: #dcfce7;
+  --success-text: #16a34a;
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+}
+
+[data-theme="dark"] {
+  /* Dark theme variables */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --border-light: #475569;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-hover: rgba(102, 126, 234, 0.5);
+  --accent-primary: #667eea;
+  --accent-secondary: #764ba2;
+  --error-bg: #7f1d1d;
+  --error-text: #fca5a5;
+  --error-border: #991b1b;
+  --success-bg: #14532d;
+  --success-text: #4ade80;
+  --scrollbar-track: #1e293b;
+  --scrollbar-thumb: #475569;
+  --scrollbar-thumb-hover: #64748b;
+}
+
+.App {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
+}
+
+/* Global Loading Styles */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
+}
+
+.loading-spinner {
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--border-color);
+  border-top: 4px solid var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem auto;
+}
+
+.loading-spinner p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Global Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
